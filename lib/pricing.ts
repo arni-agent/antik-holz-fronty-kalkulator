@@ -49,21 +49,15 @@ export const defaultPricingConfig: PricingConfig = {
   materials: [
     {
       id: 'standard',
-      label: 'Standard (sosna z odzysku)',
+      label: 'Iglaste (sosna z odzysku)',
       basePricePerM2: 599,
-      description: 'Klasyczne fronty ze starej sosny, rustykalny charakter.'
+      description: 'Fronty ze starej sosny iglastej, naturalny rustykalny charakter.'
     },
     {
       id: 'premium',
-      label: 'Premium (dąb z odzysku)',
-      basePricePerM2: 849,
-      description: 'Wyselekcjonowany dąb z odzysku o głębokiej strukturze.'
-    },
-    {
-      id: 'exclusive',
-      label: 'Exclusive / Custom (dąb stary 50+ lat)',
-      basePricePerM2: 1199,
-      description: 'Najbardziej szlachetny materiał dla realizacji premium.'
+      label: 'Olchowe (olcha z odzysku)',
+      basePricePerM2: 699,
+      description: 'Fronty z olchy z odzysku, ciepły odcień i delikatna struktura.'
     }
   ],
   finishes: [
