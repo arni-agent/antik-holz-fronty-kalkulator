@@ -3,33 +3,33 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
-}
-
-body {
-  margin: 0;
-  background: linear-gradient(180deg, #16100c 0%, #22180f 65%, #1a130d 100%);
+  color-scheme: light;
 }
 
 * {
   box-sizing: border-box;
 }
 
-@keyframes softPulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.94;
-  }
-  50% {
-    transform: scale(1.015);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.96;
-  }
+body {
+  margin: 0;
+  background-color: #faf9f6;
+  color: #1e1712;
 }
 
-.animate-softPulse {
-  animation: softPulse 360ms ease-in-out;
+@layer components {
+  .card {
+    @apply rounded-lg border border-warmgray bg-white;
+  }
+
+  .ah-label {
+    @apply text-xs font-medium uppercase tracking-[0.25em] text-ah-text-secondary;
+  }
+
+  .ah-input {
+    @apply rounded-lg border border-warmgray bg-white px-4 py-3 text-sm text-ah-dark outline-none transition-colors focus:border-ah-wood;
+  }
+
+  .ah-button {
+    @apply rounded-lg bg-ah-wood px-4 py-3 text-xs font-medium uppercase tracking-wide-md text-white transition-colors hover:bg-ah-wood-dark;
+  }
 }

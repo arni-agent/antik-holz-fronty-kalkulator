@@ -92,55 +92,46 @@ export default function CalculatorPage() {
   };
 
   return (
-    <main className="min-h-screen bg-wood-glow text-sand-50">
-      <section className="mx-auto max-w-7xl px-4 pb-24 pt-14 sm:px-8">
-        <div className="relative overflow-hidden rounded-3xl border border-sand-100/20 bg-wood-950/90 p-8 shadow-panel sm:p-10">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(200,154,72,0.18),transparent_42%)]" />
-          <p className="relative mb-3 inline-flex rounded-full border border-accent-gold/40 bg-accent-gold/10 px-4 py-1 text-xs uppercase tracking-[0.2em] text-sand-100/90">
-            ANTIK-HOLZ Profis
-          </p>
-          <h1 className="relative max-w-3xl text-3xl font-semibold leading-tight text-sand-50 sm:text-5xl">
-            Fronty meblowe ze starego drewna — oblicz cenę
-          </h1>
-          <p className="relative mt-4 max-w-3xl text-sm text-sand-100/80 sm:text-base">
+    <main className="min-h-screen bg-[#faf9f6] text-ah-dark">
+      <section className="mx-auto max-w-7xl px-4 pb-20 pt-8 sm:px-6 lg:px-8">
+        <header className="card border-b py-6 px-6 text-center">
+          <p className="brand text-xs uppercase tracking-[0.25em] text-ah-text-secondary font-medium">ANTIK-HOLZ Profis</p>
+          <h1 className="mt-3 text-4xl italic tracking-wide-sm text-ah-dark font-[var(--font-playfair)]">Kalkulator Frontów</h1>
+          <p className="mx-auto mt-4 max-w-3xl text-sm text-ah-text-secondary">
             Kalkulator orientacyjny dla frontów z płyt 3-warstwowych. Otrzymasz natychmiastową estymację netto i brutto (VAT 23%),
             z uwzględnieniem materiału, wykończenia i oklejania.
           </p>
-        </div>
+        </header>
 
-        <section className="mt-8 rounded-3xl border border-sand-100/20 bg-wood-900/80 p-5 shadow-panel sm:p-8">
-          <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-xl font-semibold text-sand-50">Konfigurator frontów</h2>
-            <button
-              type="button"
-              onClick={addRow}
-              className="rounded-xl border border-accent-gold/50 bg-accent-gold/15 px-4 py-2 text-sm font-medium text-sand-50 transition hover:bg-accent-gold/30"
-            >
-              + Dodaj front
+        <section className="card mt-8 p-5 sm:p-8">
+          <div className="mb-5 flex items-center justify-between gap-4">
+            <h2 className="text-2xl italic text-ah-dark font-[var(--font-playfair)]">Konfigurator frontów</h2>
+            <button type="button" onClick={addRow} className="ah-button">
+              Dodaj front
             </button>
           </div>
 
           <div className="space-y-4">
             {calculatedRows.map((row, index) => (
-              <article key={row.id} className="rounded-2xl border border-sand-100/15 bg-wood-950/70 p-4 sm:p-5">
+              <article key={row.id} className="card p-4 sm:p-5">
                 <div className="mb-4 flex items-center justify-between">
-                  <h3 className="text-base font-medium text-sand-50">Pozycja {index + 1}</h3>
+                  <h3 className="text-base font-medium text-ah-dark">Pozycja {index + 1}</h3>
                   <button
                     type="button"
                     onClick={() => removeRow(row.id)}
-                    className="rounded-lg border border-sand-100/25 px-3 py-1 text-xs text-sand-100/80 transition hover:border-sand-100/45 hover:text-sand-50"
+                    className="rounded-lg border border-warmgray px-3 py-1 text-xs uppercase tracking-wide-md text-ah-text-secondary transition-colors hover:border-ah-wood hover:text-ah-dark"
                   >
                     Usuń
                   </button>
                 </div>
 
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
-                  <label className="flex flex-col gap-1 text-sm text-sand-100/90 lg:col-span-2">
-                    Materiał
+                  <label className="lg:col-span-2 flex flex-col gap-2">
+                    <span className="ah-label">Materiał</span>
                     <select
                       value={row.material}
                       onChange={(event) => updateRow(row.id, 'material', event.target.value as FrontItemInput['material'])}
-                      className="rounded-xl border border-sand-100/20 bg-wood-900 px-3 py-2 text-sand-50 outline-none ring-accent-gold transition focus:ring"
+                      className="ah-input"
                     >
                       {defaultPricingConfig.materials.map((material) => (
                         <option key={material.id} value={material.id}>
@@ -150,45 +141,45 @@ export default function CalculatorPage() {
                     </select>
                   </label>
 
-                  <label className="flex flex-col gap-1 text-sm text-sand-100/90">
-                    Szerokość (mm)
+                  <label className="flex flex-col gap-2">
+                    <span className="ah-label">Szerokość (mm)</span>
                     <input
                       type="number"
                       min={100}
                       value={row.widthMm}
                       onChange={(event) => updateRow(row.id, 'widthMm', Math.max(100, Number(event.target.value) || 100))}
-                      className="rounded-xl border border-sand-100/20 bg-wood-900 px-3 py-2 text-sand-50 outline-none ring-accent-gold transition focus:ring"
+                      className="ah-input"
                     />
                   </label>
 
-                  <label className="flex flex-col gap-1 text-sm text-sand-100/90">
-                    Wysokość (mm)
+                  <label className="flex flex-col gap-2">
+                    <span className="ah-label">Wysokość (mm)</span>
                     <input
                       type="number"
                       min={100}
                       value={row.heightMm}
                       onChange={(event) => updateRow(row.id, 'heightMm', Math.max(100, Number(event.target.value) || 100))}
-                      className="rounded-xl border border-sand-100/20 bg-wood-900 px-3 py-2 text-sand-50 outline-none ring-accent-gold transition focus:ring"
+                      className="ah-input"
                     />
                   </label>
 
-                  <label className="flex flex-col gap-1 text-sm text-sand-100/90">
-                    Ilość
+                  <label className="flex flex-col gap-2">
+                    <span className="ah-label">Ilość</span>
                     <input
                       type="number"
                       min={1}
                       value={row.quantity}
                       onChange={(event) => updateRow(row.id, 'quantity', Math.max(1, Number(event.target.value) || 1))}
-                      className="rounded-xl border border-sand-100/20 bg-wood-900 px-3 py-2 text-sand-50 outline-none ring-accent-gold transition focus:ring"
+                      className="ah-input"
                     />
                   </label>
 
-                  <label className="flex flex-col gap-1 text-sm text-sand-100/90">
-                    Wykończenie
+                  <label className="flex flex-col gap-2">
+                    <span className="ah-label">Wykończenie</span>
                     <select
                       value={row.finish}
                       onChange={(event) => updateRow(row.id, 'finish', event.target.value as FrontItemInput['finish'])}
-                      className="rounded-xl border border-sand-100/20 bg-wood-900 px-3 py-2 text-sand-50 outline-none ring-accent-gold transition focus:ring"
+                      className="ah-input"
                     >
                       {defaultPricingConfig.finishes.map((finish) => (
                         <option key={finish.id} value={finish.id}>
@@ -199,34 +190,34 @@ export default function CalculatorPage() {
                   </label>
                 </div>
 
-                <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-sand-100/90">
+                <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-ah-text-secondary">
                   <label className="inline-flex items-center gap-2">
                     <input
                       type="checkbox"
                       checked={row.edgeBanding}
                       onChange={(event) => updateRow(row.id, 'edgeBanding', event.target.checked)}
-                      className="size-4 rounded border-sand-100/30 bg-wood-900 text-accent-gold focus:ring-accent-gold"
+                      className="size-4 rounded border-warmgray bg-white text-ah-wood focus:ring-ah-wood"
                     />
                     Oklejanie krawędzi (+{formatCurrency(defaultPricingConfig.edgeBandingPerM2)}/m²)
                   </label>
                 </div>
 
-                <dl className="mt-4 grid gap-3 rounded-2xl border border-sand-100/15 bg-wood-900/70 p-4 text-sm sm:grid-cols-4">
+                <dl className="mt-4 grid gap-3 rounded-lg border border-warmgray bg-cream p-4 text-sm sm:grid-cols-4">
                   <div>
-                    <dt className="text-sand-100/70">Powierzchnia (1 szt.)</dt>
-                    <dd className="text-base font-semibold text-sand-50">{formatNumber(row.calc.areaM2)} m²</dd>
+                    <dt className="ah-label">Powierzchnia (1 szt.)</dt>
+                    <dd className="mt-1 text-base font-semibold text-ah-dark">{formatNumber(row.calc.areaM2)} m²</dd>
                   </div>
                   <div>
-                    <dt className="text-sand-100/70">Cena netto / m²</dt>
-                    <dd className="text-base font-semibold text-sand-50">{formatCurrency(row.calc.unitPricePerM2Net)}</dd>
+                    <dt className="ah-label">Cena netto / m²</dt>
+                    <dd className="mt-1 text-base font-semibold text-ah-dark">{formatCurrency(row.calc.unitPricePerM2Net)}</dd>
                   </div>
                   <div>
-                    <dt className="text-sand-100/70">Cena netto / front</dt>
-                    <dd className="text-base font-semibold text-sand-50">{formatCurrency(row.calc.unitFrontNet)}</dd>
+                    <dt className="ah-label">Cena netto / front</dt>
+                    <dd className="mt-1 text-base font-semibold text-ah-dark">{formatCurrency(row.calc.unitFrontNet)}</dd>
                   </div>
                   <div>
-                    <dt className="text-sand-100/70">Wartość pozycji brutto</dt>
-                    <dd className="text-base font-semibold text-accent-gold">{formatCurrency(row.calc.lineTotalGross)}</dd>
+                    <dt className="ah-label">Wartość pozycji brutto</dt>
+                    <dd className="mt-1 text-base font-semibold text-ah-wood">{formatCurrency(row.calc.lineTotalGross)}</dd>
                   </div>
                 </dl>
               </article>
@@ -235,42 +226,38 @@ export default function CalculatorPage() {
         </section>
 
         <section className="mt-8 grid gap-4 lg:grid-cols-[1.2fr_1fr]">
-          <div className="rounded-3xl border border-sand-100/20 bg-wood-900/80 p-6 shadow-panel">
-            <h2 className="text-xl font-semibold text-sand-50">Podsumowanie zamówienia</h2>
+          <div className="card p-6">
+            <h2 className="text-2xl italic text-ah-dark font-[var(--font-playfair)]">Podsumowanie zamówienia</h2>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-sand-100/15 bg-wood-950/80 p-4">
-                <p className="text-sm text-sand-100/70">Łączna powierzchnia</p>
-                <p className="mt-1 text-2xl font-semibold text-sand-50">{formatNumber(totals.totalM2)} m²</p>
+              <div className="rounded-lg border border-warmgray bg-cream p-4">
+                <p className="ah-label">Łączna powierzchnia</p>
+                <p className="mt-1 text-2xl font-semibold text-ah-dark">{formatNumber(totals.totalM2)} m²</p>
               </div>
-              <div className="rounded-2xl border border-sand-100/15 bg-wood-950/80 p-4">
-                <p className="text-sm text-sand-100/70">Łączne MB obrzeża</p>
-                <p className="mt-1 text-2xl font-semibold text-sand-50">{formatNumber(totals.totalMB)} mb</p>
+              <div className="rounded-lg border border-warmgray bg-cream p-4">
+                <p className="ah-label">Łączne MB obrzeża</p>
+                <p className="mt-1 text-2xl font-semibold text-ah-dark">{formatNumber(totals.totalMB)} mb</p>
               </div>
-              <div className="rounded-2xl border border-sand-100/15 bg-wood-950/80 p-4">
-                <p className="text-sm text-sand-100/70">Suma netto</p>
-                <p key={totals.totalNet.toFixed(2)} className="mt-1 text-2xl font-semibold text-sand-50 animate-softPulse">
+              <div className="rounded-lg border border-warmgray bg-cream p-4">
+                <p className="ah-label">Suma netto</p>
+                <p key={totals.totalNet.toFixed(2)} className="mt-1 text-2xl font-semibold text-ah-dark">
                   {formatCurrency(totals.totalNet)}
                 </p>
               </div>
-              <div className="rounded-2xl border border-accent-gold/30 bg-accent-gold/10 p-4">
-                <p className="text-sm text-sand-100/70">Suma brutto (VAT 23%)</p>
-                <p key={totals.totalGross.toFixed(2)} className="mt-1 text-2xl font-semibold text-accent-gold animate-softPulse">
+              <div className="rounded-lg border border-warmgray bg-white p-4">
+                <p className="ah-label">Suma brutto (VAT 23%)</p>
+                <p key={totals.totalGross.toFixed(2)} className="mt-1 text-2xl font-semibold text-ah-wood">
                   {formatCurrency(totals.totalGross)}
                 </p>
               </div>
             </div>
           </div>
 
-          <aside className="rounded-3xl border border-sand-100/20 bg-wood-900/80 p-6 shadow-panel">
-            <h2 className="text-xl font-semibold text-sand-50">Formalna wycena</h2>
-            <p className="mt-2 text-sm text-sand-100/80">
+          <aside className="card p-6">
+            <h2 className="text-2xl italic text-ah-dark font-[var(--font-playfair)]">Formalna wycena</h2>
+            <p className="mt-2 text-sm text-ah-text-secondary">
               Potrzebujesz oferty handlowej z terminem realizacji? Wyślij zapytanie bezpośrednio do zespołu ANTIK-HOLZ Profis.
             </p>
-            <button
-              type="button"
-              onClick={() => setShowContact((value) => !value)}
-              className="mt-4 w-full rounded-xl border border-accent-gold/60 bg-accent-gold/20 px-4 py-3 text-sm font-semibold text-sand-50 transition hover:bg-accent-gold/35"
-            >
+            <button type="button" onClick={() => setShowContact((value) => !value)} className="ah-button mt-4 w-full">
               Poproś o formalną wycenę
             </button>
 
@@ -281,7 +268,7 @@ export default function CalculatorPage() {
                   value={contact.name}
                   onChange={(event) => setContact((prev) => ({ ...prev, name: event.target.value }))}
                   placeholder="Imię i nazwisko"
-                  className="w-full rounded-xl border border-sand-100/25 bg-wood-950 px-3 py-2 text-sm text-sand-50 outline-none ring-accent-gold transition focus:ring"
+                  className="ah-input w-full"
                 />
                 <input
                   required
@@ -289,13 +276,13 @@ export default function CalculatorPage() {
                   value={contact.email}
                   onChange={(event) => setContact((prev) => ({ ...prev, email: event.target.value }))}
                   placeholder="E-mail"
-                  className="w-full rounded-xl border border-sand-100/25 bg-wood-950 px-3 py-2 text-sm text-sand-50 outline-none ring-accent-gold transition focus:ring"
+                  className="ah-input w-full"
                 />
                 <input
                   value={contact.phone}
                   onChange={(event) => setContact((prev) => ({ ...prev, phone: event.target.value }))}
                   placeholder="Telefon"
-                  className="w-full rounded-xl border border-sand-100/25 bg-wood-950 px-3 py-2 text-sm text-sand-50 outline-none ring-accent-gold transition focus:ring"
+                  className="ah-input w-full"
                 />
                 <textarea
                   required
@@ -303,18 +290,15 @@ export default function CalculatorPage() {
                   value={contact.message}
                   onChange={(event) => setContact((prev) => ({ ...prev, message: event.target.value }))}
                   placeholder="Dodatkowe informacje: frezy, terminy, projekt..."
-                  className="w-full rounded-xl border border-sand-100/25 bg-wood-950 px-3 py-2 text-sm text-sand-50 outline-none ring-accent-gold transition focus:ring"
+                  className="ah-input w-full"
                 />
-                <button
-                  type="submit"
-                  className="w-full rounded-xl bg-accent-gold px-4 py-3 text-sm font-semibold text-wood-950 transition hover:brightness-110"
-                >
+                <button type="submit" className="ah-button w-full">
                   Wyślij zapytanie
                 </button>
               </form>
             ) : null}
 
-            {contactStatus ? <p className="mt-3 text-xs text-sand-100/90">{contactStatus}</p> : null}
+            {contactStatus ? <p className="mt-3 text-xs text-ah-text-secondary">{contactStatus}</p> : null}
           </aside>
         </section>
       </section>
